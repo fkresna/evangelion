@@ -86,6 +86,7 @@
 		  </div>
 		</form>
 	  </div>
+<<<<<<< HEAD
 	</div>
 	<script>
 		$(function(){
@@ -95,3 +96,76 @@
 		});
 	</script>			
 	{% endblock %}
+=======
+	  <div class="form-group">
+		<label for="inputLname" class="col-sm-2 control-label">Last Name</label>
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" id="inputLname" placeholder="Last Name">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputAddress" class="col-sm-2 control-label">Address</label>
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputGender" class="col-sm-2 control-label">Gender</label>
+		<div class="col-sm-5">
+			<input type="radio" name="gender" id="gender" value="M" checked> Male &nbsp;&nbsp;&nbsp;
+			<input type="radio" name="gender" id="gender" value="F"> Female
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputPhone" class="col-sm-2 control-label">Phone Number</label>
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputEmail" class="col-sm-2 control-label">Email Address</label>
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" id="inputEmail" placeholder="Email Address">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputBirthday" class="col-sm-2 control-label">Date of Birth</label>
+		<div class="col-sm-2">
+		  <input type="date" class="form-control" value="2014-06-03" id="inputBirthday">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputBirthplace" class="col-sm-2 control-label">Birth Place</label>
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" id="inputBirthPlace" placeholder="Birth Place">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="inputMarital" class="col-sm-2 control-label">Marital Status</label>
+		<div class="col-sm-2">
+		  <select class="form-control">
+			<option>Single</option>
+			<option>Married</option>
+			<option>Widowed</option>
+		</select>
+		</div>
+	  </div>
+	  
+	  <div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+		  <button type="submit" class="btn btn-default">Submit</button>
+		  <button type="reset" class="btn btn-default">Reset</button>
+		</div>
+	  </div>
+	</form>
+  </div>
+</div>
+<script>
+	$(function(){
+		$('#dp1').datepicker({
+			format: 'mm-dd-yyyy'
+		});
+	});
+</script>			
+{% endblock %}
+>>>>>>> 4b3840db7856342060e68f7a3ebe0d73c1ac1cb9
