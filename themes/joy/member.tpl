@@ -104,15 +104,13 @@
 			<th>Birthday</th>
 		</tr>
 		{% for d in data %}
-		  <tr>
+		 <tr>
 			<td>{{ d.member_id|escape }}</td>
 			<td>{{ d.first_name|escape }}</td>
 			<td>{{ d.last_name|escape }}</td>
 			<td>{{ d.address|escape }}</td>
 			<td>{{ d.phone|escape }}</td>
-			<td>{% if d.sex == 1 %} female
-				{% else %} male  
-				{% endif %}</td>
+			<td>{{ d.sex|escape }}</td>
 			<td>{{ d.email|escape }}</td>
 			<td>{{ d.birthday|escape }}</td>
 		 </tr> 
