@@ -3,8 +3,16 @@
  * User: Freddy
  * Date: 2/24/14
  */
- 
- // attempt a connection
+if(isset($_POST['action'])) 
+{ 
+	include_once "model/member.php";
+	$member = new Member();
+	$member->setMemberId($_POST['id']);
+	$member->setFirstName($_POST['fname']);
+	$member->insert();
+}
+
+// attempt a connection
 try {
   $dbh = new PDO('mysql:dbname=absensi;host=localhost', 'root', '');
 } catch (PDOException $e) {
@@ -33,5 +41,5 @@ include_once "lib/twig.php";
 $twig = new Twig();
 $twig->display("member.html",array(
     'data' => $data));
-
+	
 ?>

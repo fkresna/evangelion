@@ -80,13 +80,14 @@
 	  
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-		  <button type="submit" class="btn btn-default">Submit</button>
-		  <button type="reset" class="btn btn-default">Reset</button>
+		  <button type="button" class="btn btn-default" id="submit">Submit</button>
+		  <button type="button" class="btn btn-default" id="reset">Reset</button>
 		</div>
 	  </div>
 	</form>
   </div>
 </div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
 	<h3 class="panel-title">Data Member</h3>
@@ -120,11 +121,46 @@
 	</table>
   </div>
 </div> 
+
+<script src="jquery-1.11.1.js"></script>
 <script>
-	$(function(){
-		$('#dp1').datepicker({
-			format: 'mm-dd-yyyy'
+	$(document).ready(function() {
+		$("#submit").click(function(){
+			var id = $("#inputID").val();
+			var fname = $("#inputFName").val();
+			if(id == "" || fname == "")
+				alert("Form yang memiliki tanda merah tidak boleh kosong");
+			else{
+				//$("#loading_simpan").fadeIn(100);
+				$.ajax({			
+					type: "POST",
+					url: "member.php",
+					data: "action=insert&id="+id+"&fname="+fname,
+					cache: false,
+					dataType: "text",
+					success: function(msg){
+						if(msg == "1"){
+							alert("Proses registrasi member berhasil.");
+							clear_form();
+						}
+						else if(msg == "0")
+							alert("Ada kesalahan dalam proses penyimpanan, silahkan ulangi lagi.");
+						else if(msg == "x")
+							alert("User name yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+						else if(msg == "xx")
+							alert("Email user yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+						else
+							alert("ERROR: "+msg);
+						//$("#loading_simpan").fadeOut(100);	
+					}
+				});
+
+			}
 		});
-	});
+	})
+	function clear_form(){
+			$("#inputID").val("");
+			$("#inputFName").val("");
+	}
 </script>			
 {% endblock %}

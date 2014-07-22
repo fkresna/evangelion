@@ -7,7 +7,7 @@
 namespace model;
 
 
-class member {
+class Member {
     private $member_id;
     private $first_name;
     private $last_name;
@@ -196,5 +196,8 @@ class member {
         return $this->last_name;
     }
 
-
+	public function insert()
+	{
+	
+	}
 } 
