@@ -127,7 +127,7 @@
 	$(document).ready(function() {
 		$("#submit").click(function(){
 			var id = $("#inputID").val();
-			var fname = $("#inputFName").val();
+			var fname = $("#inputFname").val();
 			if(id == "" || fname == "")
 				alert("Form yang memiliki tanda merah tidak boleh kosong");
 			else{
@@ -160,7 +160,7 @@
 	})
 	function clear_form(){
 			$("#inputID").val("");
-			$("#inputFName").val("");
+			$("#inputFname").val("");
 	}
 </script>			
 {% endblock %}

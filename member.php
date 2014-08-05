@@ -11,7 +11,8 @@ if(isset($_POST['action']))
 	$member->setFirstName($_POST['fname']);
 	$member->insert();
 }
-
+else
+{
 // attempt a connection
 try {
   $dbh = new PDO('mysql:dbname=absensi;host=localhost', 'root', '');
@@ -41,5 +42,5 @@ include_once "lib/twig.php";
 $twig = new Twig();
 $twig->display("member.html",array(
     'data' => $data));
-	
+}	
 ?>
