@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - absensi@localhost" uuid="3a1e1348-b250-41a3-a1a0-ba1d3e097e13">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>absensi.*</schema-pattern>
+      <default-schemas>absensi.*</default-schemas>
+    </data-source>
+  </component>
+</project>

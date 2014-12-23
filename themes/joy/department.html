@@ -16,6 +16,7 @@
 		<label for="inputID" class="col-sm-2 control-label">Department ID</label>
 		<div class="col-sm-3">
 		  <input type="text" class="form-control" id="inputID" placeholder="Department ID">
+		  <input type="hidden" class="form-control" id="inputType" value="1">
 		</div>
 	  </div>
 	  <div class="form-group">
@@ -26,19 +27,135 @@
 	  </div>
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-		  <button type="submit" class="btn btn-default">Submit</button>
-		  <button type="reset" class="btn btn-default">Reset</button>
+		  <button type="button" class="btn btn-default" id="submit">Submit</button>
+		  <button type="button" class="btn btn-default" id="reset">Reset</button>
 		</div>
 	  </div>
 	</form>
   </div>
 </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<h3 class="panel-title">Data Department</h3>
+  </div>
+  <div class="panel-body">
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>Department Name</th>
+			<th>Action</th>
+		</tr>
+		{% for d in data %}
+		  <tr>
+			<td>{{ d.department_id|escape }}</td>
+			<td>{{ d.department_name|escape }}</td>
+			<td><button title="Edit data" class="btn btn-info" onClick="tampil_data({{d.department_id}},'{{d.department_name}}')"></button></td>
+		 </tr> 
+        {% endfor %}
+	</table>
+  </div>
+</div> 
+
+<script src="jquery-1.11.1.js"></script>
 <script>
-	$(function(){
-		$('#dp1').datepicker({
-			format: 'mm-dd-yyyy'
+	$(document).ready(function() {
+		$("#submit").click(function(){
+			var type = $("#inputType").val();
+			if(type=="1") {
+				var id = $("#inputID").val();
+				var name = $("#inputname").val();
+				if (id == "" || name == "")
+					alert("Form yang memiliki tanda merah tidak boleh kosong");
+				else {
+					//$("#loading_simpan").fadeIn(100);
+					$.ajax({
+						type: "POST",
+						url: "department.php",
+						data: "action=insert&id=" + id + "&name=" + name,
+						cache: false,
+						dataType: "text",
+						success: function (msg) {
+							if (msg == "1") {
+								alert("Proses registrasi department berhasil.");
+								clear_form();
+							}
+							else if (msg == "0")
+								alert("Ada kesalahan dalam proses penyimpanan, silahkan ulangi lagi.");
+							else if (msg == "x")
+								alert("User name yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+							else if (msg == "xx")
+								alert("Email user yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+							else
+								alert("ERROR: " + msg);
+							$("#loading_simpan").fadeOut(100);
+						}
+					});
+				}
+			}
+			else{
+				var id = $("#inputID").val();
+				var name = $("#inputname").val();
+				if (id == "" || name == "")
+					alert("Form yang memiliki tanda merah tidak boleh kosong");
+				else {
+					//$("#loading_simpan").fadeIn(100);
+					$.ajax({
+						type: "POST",
+						url: "department.php",
+						data: "action=update&id=" + id + "&name=" + name,
+						cache: false,
+						dataType: "text",
+						success: function (msg) {
+							if (msg == "1") {
+								alert("Proses registrasi department berhasil.");
+								clear_form();
+							}
+							else if (msg == "0")
+								alert("Ada kesalahan dalam proses penyimpanan, silahkan ulangi lagi.");
+							else if (msg == "x")
+								alert("User name yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+							else if (msg == "xx")
+								alert("Email user yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
+							else
+								alert("ERROR: " + msg);
+							$("#loading_simpan").fadeOut(100);
+						}
+					});
+				}
+			}
 		});
-	});
+		$("#reset").click(function(){
+			clear_form();
+		});
+	})
+
+	function clear_form(){
+		$("#inputID").val("");
+		$("#inputname").val("");
+		$("#inputType").val("1");
+		$("#inputID").attr('disabled', false);
+	}
+	function tampil_data(department_id,department_name){
+		$("#inputID").val(department_id);
+		$("#inputname").val(department_name);
+		$("#inputType").val("2");
+		$("#inputID").attr('disabled', true);
+	}
+	function load_data(){
+		$("#loading_tabel").fadeIn(100);
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url();?>master_admin/load_data",
+			data: "action=load",
+			cache: false,
+			dataType: "text",
+			success: function(msg){
+				$("#table").html(msg);
+				$("#loading_tabel").fadeOut(100);
+
+			}
+		});
+	}
 </script>			
 {% endblock %}
 

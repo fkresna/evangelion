@@ -82,6 +82,7 @@
 		<div class="col-sm-offset-2 col-sm-10">
 		  <button type="button" class="btn btn-default" id="submit">Submit</button>
 		  <button type="button" class="btn btn-default" id="reset">Reset</button>
+		  <img src="themes/images/loading.gif" class="loading_form" id="loading_simpan" hidden>
 		</div>
 	  </div>
 	</form>
@@ -128,14 +129,22 @@
 		$("#submit").click(function(){
 			var id = $("#inputID").val();
 			var fname = $("#inputFname").val();
-			if(id == "" || fname == "")
+			var lname = $("#inputLname").val();
+			var address = $("#inputAddress").val();
+			var gender = $("#gender").val();
+			var phone = $("#inputPhone").val();
+			var email = $("#inputEmail").val();
+			var bdate = $("#inputBirthday").val();
+			var bplace = $("#inputBirthPlace").val();
+			var marital = $("#inputFname").val();
+			if(id == "" || fname == "" || lname == "")
 				alert("Form yang memiliki tanda merah tidak boleh kosong");
 			else{
 				//$("#loading_simpan").fadeIn(100);
 				$.ajax({			
 					type: "POST",
 					url: "member.php",
-					data: "action=insert&id="+id+"&fname="+fname,
+					data: "action=insert&id="+id+"&fname="+fname+"&lname="+lname+"&address="+address+"&gender="+gender+"&phone="+phone+"&email="+email+"&bdate="+bdate+"&bplace="+bplace+"&marital="+marital,
 					cache: false,
 					dataType: "text",
 					success: function(msg){
@@ -151,10 +160,9 @@
 							alert("Email user yang dimasukan sudah pernah terpakai, silahkan ulangi lagi.");
 						else
 							alert("ERROR: "+msg);
-						//$("#loading_simpan").fadeOut(100);	
+						$("#loading_simpan").fadeOut(100);	
 					}
 				});
-
 			}
 		});
 	})

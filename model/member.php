@@ -4,9 +4,6 @@
  * Date: 6/3/14
  */
 
-//namespace model;
-
-
 class Member {
     private $member_id;
     private $first_name;
@@ -196,17 +193,4 @@ class Member {
         return $this->last_name;
     }
 
-	public function insert()
-	{
-		try {
-			$dbh = new PDO('mysql:dbname=absensi;host=localhost', 'root', '');
-		} catch (PDOException $e) {
-			echo "Error: Could not connect. " . $e->getMessage();
-		}
-		$sql = "INSERT INTO member (member_id,first_name) VALUES (".$this->member_id.",'".$this->first_name."')";
-		$sth = $dbh->prepare($sql);
-		$sth->execute(array('widgets'));
-		$temp = $sth->fetch(PDO::FETCH_ASSOC);
-		echo "1";
-	}
 } 
